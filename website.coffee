@@ -1,10 +1,12 @@
-OurDate = new Meteor.Collection
-
 if Meteor.isClient
+  ourDateId = OurDate.findOne({})
+  if ourDateId == undefined
+    ourDateId = OurDate.insert {date: Date.now()}
+
   Meteor.Router.add
-    '/': 'index',
+    '/':      'index'
     '/about': 'about'
-    '/blog': 'blog'
+    '/blog':  'blog'
 
   Template.hello.greeting = ->
     "Welcome to website."

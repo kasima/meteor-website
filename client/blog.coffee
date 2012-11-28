@@ -1,7 +1,11 @@
 Template.blog.something = ->
-  "SOMETHING!"
+  OurDate.findOne().date
 
 Template.blog.events({
   'click .btn': ->
-    OurDate.insert({date: Date.now()})
+    console.log "updating"
+    OurDate.update(ourDateId,
+      $set:
+        date: Date.now()
+    )
 })
